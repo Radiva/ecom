@@ -20,19 +20,20 @@ function login(){
 }
 
 function register(){
-    $('form#form-register').submit(function(event) {
+    $('form#form-register').submit(function(e) {
+        e.preventDefault();
         $.ajax({
            type: "POST",
             url:base_url('client/user.php?option=1'),
-            data: $('this').serialize(),
+            data: $('form#form-register').serialize(),
             dataType: "json",
             cache: false,
             crossDomain: true,
             success: function(res){
                 console.log(res);
-                $.each(res, function(key,value){
-                    
-                });
+                if(res){
+                    window.location = 'index.html';
+                }
             },
             error: function(res){
                console.log(res);

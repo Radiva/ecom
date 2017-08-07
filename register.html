@@ -52,33 +52,37 @@
                     <form id="form-register">
                     	<div class="page-login-input">
 	                        <i class="login-icon ion-person"></i>
-	                        <input type="text" name="username" value="Username" onfocus="if (this.value=='Username') this.value = ''" onblur="if (this.value=='') this.value = 'Username'">
+	                        <input type="text" name="username" value="Username" onfocus="if (this.value=='Username') this.value = ''" onblur="if (this.value=='') this.value = 'Username'" required="required">
 	                    </div>
 	                    <div class="page-login-input">
 	                        <i class="login-icon ion-locked"></i>
-	                        <input type="password" name="password" value="Password" onfocus="if (this.value=='Password') this.value = ''" onblur="if (this.value=='') this.value = 'Password'">
+	                        <input type="password" name="password" value="Password" onfocus="if (this.value=='Password') this.value = ''" onblur="if (this.value=='') this.value = 'Password'" required="required">
 	                    </div>
 	                    <div class="page-login-input full-bottom">
 	                        <i class="login-icon ion-person"></i>
-	                        <input type="text" name="namadepan" value="nama depan" onfocus="if (this.valgue=='nama depan') this.value = ''" onblur="if (this.value=='') this.value = 'nama depan'">
+	                        <input type="text" name="namadepan" value="nama depan" onfocus="if (this.value=='nama depan') this.value = ''" onblur="if (this.value=='') this.value = 'nama depan'" required="required">
 	                    </div>
 	                    <div class="page-login-input full-bottom">
 	                        <i class="login-icon ion-person"></i>
-	                        <input type="text" name="namabelakang" value="nama belakang" onfocus="if (this.value=='nama belakang') this.value = ''" onblur="if (this.value=='') this.value = 'nama belakang'">
+	                        <input type="text" name="namabelakang" value="nama belakang" onfocus="if (this.value=='nama belakang') this.value = ''" onblur="if (this.value=='') this.value = 'nama belakang'" required="required">
 	                    </div>
 	                    <div class="page-login-input full-bottom">
 	                        <i class="login-icon ion-locked"></i>
-	                        <input name="notelp" type="text" value="no telpon" onfocus="if (this.value=='no telpon') this.value = ''" onblur="if (this.value=='') this.value = 'no telpon'">
+	                        <input name="notelp" type="text" value="no telpon" onfocus="if (this.value=='no telpon') this.value = ''" onblur="if (this.value=='') this.value = 'no telpon'" required="required">
 	                    </div>
 	                    <div class="page-login-input full-bottom">
 	                        <i class="login-icon ion-happy-outline"></i>
-	                        <input name="alamat" type="text" value="Alamat" onfocus="if (this.value=='Alamat') this.value = ''" onblur="if (this.value=='') this.value = 'Alamat'">
+	                        <input name="alamat" type="text" value="Alamat" onfocus="if (this.value=='Alamat') this.value = ''" onblur="if (this.value=='') this.value = 'Alamat'" required="required">
 	                    </div>
 	                    <div class="page-login-input">
 	                        <i class="login-icon ion-ios-calendar-outline"></i>
-	                        <input name="tgllahir" class="set-today" type="date">
+	                        <input name="tgllahir" class="set-today" type="date" required="required">
 	                    </div>
-	                    <a class="button button-green button-icon button-full half-top full-bottom"><i class="ion-log-in"></i>Create Account</a>
+	                    <div class="page-login-input full-bottom">
+	                        <i class="login-icon ion-email"></i>
+	                        <input name="email" type="email" value="Email" onfocus="if (this.value=='Email') this.value = ''" onblur="if (this.value=='') this.value = 'Email'" required="required">
+	                    </div>
+	                    <button class="button button-green button-icon button-full half-top full-bottom btn-register">Create Account</button>
 	                    <div class="decoration"></div>
                     </form>
                     
@@ -128,6 +132,11 @@
             </div>
         </div>
     </div>
+    <script>
+    	jQuery(document).ready(function($) {
+    		register();
+    	});
+    </script>
     <script>
         /* <![CDATA[ */
         (function(d, s, a, i, j, r, l, m, t) {
