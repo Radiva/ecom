@@ -5,7 +5,7 @@ function setIdKategori(id) {
 function tampilbrand(){
      $.ajax({
            type: "POST",
-            url:base_url('client/product.php?fnc=1'),
+            url:base_url('client/product.php?option=8'),
             dataType: "json",
             cache: false,
             crossDomain: true,
@@ -35,7 +35,7 @@ function tampilproductbybrand(){
     var id = window.localStorage.getItem('brand');
      $.ajax({
            type: "POST",
-            url:base_url('client/product.php?fnc=2&id='+id),
+            url:base_url('client/product.php?option=9&id='+id),
             dataType: "json",
             cache: false,
             crossDomain: true,
