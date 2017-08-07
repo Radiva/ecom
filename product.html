@@ -208,8 +208,7 @@
             $('div[data-include]').each(function(){
                $(this).load($(this).attr('data-include')+'.html').trigger('create'); 
             });
-            var idkategori = localStorage.getItem("idkategori");
-            displayproductbykategori(idkategori);
+            displayproductbykategori();
         });
     </script>
     <script>

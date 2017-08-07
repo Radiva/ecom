@@ -37,7 +37,8 @@ function kategoriproduct(){
     });
     
 }
-function displayproductbykategori(idkategori){
+function displayproductbykategori(){
+    var idkategori = localStorage.getItem("idkategori");
     $.ajax({
        type: "POST",
         url:base_url('client/product.php?option=4'),
