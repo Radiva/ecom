@@ -44,4 +44,25 @@ switch($option){
 	$displaybestoffer = $product->displaybestoffer();
 	echo json_encode($displaybestoffer);
     break;
+
+    case 8:
+        $data = $product->displayBrand();
+        echo json_encode($data);
+        break;
+
+    case 9:
+        $id = $_GET['id'];
+        $data = $product->displayProductByBrand($id);
+        echo json_encode($data);
+        break;
+
+    case 10:
+        $id = $_GET['id'];
+        $data = $product->tampilreviewproduct($id);
+        echo json_encode($data);
+        break;
+    
+    default:
+        # code...
+        break;
 }
