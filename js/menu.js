@@ -57,3 +57,7 @@ function logout(){
     
     window.location = 'index.html';
 }
+
+function register(){
+	
+}

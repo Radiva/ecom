@@ -20,7 +20,7 @@ function login(){
 }
 
 function register(){
-    $('form#fom-register').submit(function(event) {
+    $('form#form-register').submit(function(event) {
         $.ajax({
            type: "POST",
             url:base_url('client/user.php?option=1'),
