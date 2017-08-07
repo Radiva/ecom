@@ -1,6 +1,6 @@
-// function setIdKategori(id) {
-//   window.localStorage.setItem('brand', id);
-// }
+function setIdKategori(id) {
+   window.localStorage.setItem('brand', id);
+}
 
 function tampilbrand(){
      $.ajax({
