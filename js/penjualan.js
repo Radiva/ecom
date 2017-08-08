@@ -1,32 +1,34 @@
-.jQuery(document).ready(function() {
+jQuery(document).ready(function() {
     invoice();
 });
 
 function generatenota(){
     $.ajax({
        type: "POST",
-        url:base_url('client/penjualan.php?option=5'),
+        url:base_url('client/penjualan.php?option=1'),
         dataType: "json",
         cache: false,
         crossDomain: true,
-        data:"notapemesanan="+notapemesanan,
+        data:"username=mimin",
         success: function(res){
             console.log(res);
+            invoice(res);
          },
         error: function(res){
            console.log("gagal");
         }
+    });
 }
 
-function invoice(notapemesanan){
+function invoice(){
       
     $.ajax({
-       type: "POST",
-        url:base_url('client/penjualan.php?option=5'),
+        type: "POST",
+        data:"username=mimin",
+        url:base_url('client/penjualan.php?option=2'),
         dataType: "json",
         cache: false,
         crossDomain: true,
-        data:"notapemesanan="+notapemesanan,
         success: function(res){
             console.log(res);
             var invoice = '';
@@ -35,26 +37,28 @@ function invoice(notapemesanan){
 
             $.each(res, function(key,value){
                 invoice+='<div class="toggle store-history-toggle">';
-                    invoice+='<a href="#" class="toggle-title"><strong class="bg-green-dark">Order ID: 1</strong>January 1, 2025<i class="ion-android-add"></i></a>';
+                    invoice+='<a href="#" class="toggle-title"><strong class="bg-green-dark">'+value.notapemesanan+'</strong>'+value.waktupembelian+'<i class="ion-android-add"></i></a>';
                     invoice+='<div class="toggle-content">';
+                        $.each(value.detailpenjualan, function(key,detail){
                         invoice+='<div class="store-history-item">';
                             invoice+='<a href="#">';
                                 invoice+='<img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">';
                             invoice+='</a>';
-                            invoice+='<h1>ProMobile</h1>';
-                            invoice+='<h2>Mobile andTablet Template</h2>';
+                            invoice+='<h1>'+detail.namabarang+'</h1>';
+                            invoice+='<h2>Kategori: '+detail.namakategori+'</h2>';
+                            invoice+='<h2>Brand: '+detail.namabrand+'</h2>';
                             invoice+='<h3 class="color-green-dark">Status: Delivered</h3>';
-                            invoice+='<h4>Quantity: 12 Pieces</h4>';
-                            invoice+='<h6>11.00 / item</h6>';
+                            invoice+='<h4>Quantity: '+detail.jumlah+' Pieces</h4>';
+                            invoice+='<h6>@ Rp. '+Number(detail.hargajual).toLocaleString("id")+'</h6>';
                         invoice+='</div>';
-                        
+                        });
                         invoice+='<div class="cart-costs">';
                             invoice+='<h4>Delivery Details</h4>';
-                            invoice+='<h5><strong>Unique ID</strong><em>#312312</em></h5>';
+                            invoice+='<h5><strong>Nota pemesanan</strong><em>'+value.notapemesanan+'</em></h5>';
                             invoice+='<h5><strong>Status</strong><em>Delivered</em></h5>';
-                            invoice+='<h5><strong>Taxes</strong><em>$40.00</em></h5>';
-                            invoice+='<h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>';
-                            invoice+='<h6><strong>Grand Total</strong><em>$90.00</em></h6>';
+                            invoice+='<h5><strong>Harga</strong><em>Rp. '+Number(value.totalharga).toLocaleString("id")+'</em></h5>';
+                            invoice+='<h5><strong>Discount</strong><em class="color-green-dark">'+value.diskon+'</em></h5>';
+                            invoice+='<h6><strong>Grand Total</strong><em>Rp. '+Number(value.totalharga-value.diskon).toLocaleString("id")+'</em></h6>';
                             invoice+='<div class="clear"></div>';
                         invoice+='</div>';
                     invoice+='</div>';
