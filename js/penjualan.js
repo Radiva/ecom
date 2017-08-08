@@ -1,59 +1,68 @@
-.jQuery(document).ready(function() {
+jQuery(document).ready(function() {
     invoice();
 });
-function invoice(){
-      
+
+function generatenota(){
     $.ajax({
        type: "POST",
         url:base_url('client/penjualan.php?option=1'),
         dataType: "json",
         cache: false,
         crossDomain: true,
+        data:"username=mimin",
+        success: function(res){
+            console.log(res);
+            invoice(res);
+         },
+        error: function(res){
+           console.log("gagal");
+        }
+    });
+}
+
+function invoice(){
+      
+    $.ajax({
+        type: "POST",
+        data:"username=mimin",
+        url:base_url('client/penjualan.php?option=2'),
+        dataType: "json",
+        cache: false,
+        crossDomain: true,
         success: function(res){
             console.log(res);
             var invoice = '';
+
+            invoice+='<h4>History Orders</h4>';
+
             $.each(res, function(key,value){
-                  invoice+='<div class="page-invoice">';
-                        invoice+='<div class="invoice-body full-bottom">';
-                            invoice+='<h4 class="invoice-header">';
-                            invoice+='<strong class="color-green-dark">';
-                            invoice+='<i class="ion-checkmark"></i>Approved</strong>';
-                            invoice+='15 August 2024';
-                            invoice+='</h4>';
-                            invoice+='<div class="decoration"></div>';
-                            invoice+='<div class="invoice-title">';
-                                invoice+='<h1>Invoice</h1>';
-                                invoice+='<em>ENAB-3413</em>';
-                                invoice+='<strong>15 Aug 2024</strong>';
-                            invoice+='</div>';
-                            invoice+='<div class="invoice-logo">';
-                                invoice+='<a href="#">';
-                                    invoice+='<img data-original="images/preload-logo.png" class="preload-image responsive-image" src="images/empty.png">';
-                                invoice+='</a>';
-                            invoice+='</div>';
+                invoice+='<div class="toggle store-history-toggle">';
+                    invoice+='<a href="#" class="toggle-title"><strong class="bg-green-dark">'+value.notapemesanan+'</strong>'+value.waktupembelian+'<i class="ion-android-add"></i></a>';
+                    invoice+='<div class="toggle-content">';
+                        $.each(value.detailpenjualan, function(key,detail){
+                        invoice+='<div class="store-history-item">';
+                            invoice+='<a href="#">';
+                                invoice+='<img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">';
+                            invoice+='</a>';
+                            invoice+='<h1>'+detail.namabarang+'</h1>';
+                            invoice+='<h2>Kategori: '+detail.namakategori+'</h2>';
+                            invoice+='<h2>Brand: '+detail.namabrand+'</h2>';
+                            invoice+='<h3 class="color-green-dark">Status: Delivered</h3>';
+                            invoice+='<h4>Quantity: '+detail.jumlah+' Pieces</h4>';
+                            invoice+='<h6>@ Rp. '+Number(detail.hargajual).toLocaleString("id")+'</h6>';
+                        invoice+='</div>';
+                        });
+                        invoice+='<div class="cart-costs">';
+                            invoice+='<h4>Delivery Details</h4>';
+                            invoice+='<h5><strong>Nota pemesanan</strong><em>'+value.notapemesanan+'</em></h5>';
+                            invoice+='<h5><strong>Status</strong><em>Delivered</em></h5>';
+                            invoice+='<h5><strong>Harga</strong><em>Rp. '+Number(value.totalharga).toLocaleString("id")+'</em></h5>';
+                            invoice+='<h5><strong>Discount</strong><em class="color-green-dark">'+value.diskon+'</em></h5>';
+                            invoice+='<h6><strong>Grand Total</strong><em>Rp. '+Number(value.totalharga-value.diskon).toLocaleString("id")+'</em></h6>';
                             invoice+='<div class="clear"></div>';
                         invoice+='</div>';
-                        invoice+='<div class="decoration half-bottom"></div>';
-                        invoice+='<div class="invoice-item">';
-                            invoice+='<h1>ProMobile</h1>';
-                            invoice+='<h2>1 x $15.00 + Tax</h2>';
-                            invoice+='<h3>$15.00</h3>';
-                        invoice+='</div>';
-                        invoice+='<div class="invoice-total">';
-                            invoice+='<h1 class="color-blue-dark">Subtotal</h1>';
-                            invoice+='<h2 class="color-blue-dark">$60.00</h2>';
-                        invoice+='</div>';
-                        invoice+='<div class="decoration half-bottom"></div>';
-                        invoice+='<div class="invoice-total">';
-                            invoice+='<h3>Grand Total</h3>';
-                            invoice+='<h4 class="color-green-dark">$100.00</h4>';
-                        invoice+='</div>';
                     invoice+='</div>';
-                    invoice+='<div class="decoration"></div>';
-                    invoice+='<div class="one-half">';
-                        invoice+='<a href="#" class="button button-icon button-full bg-green-dark bold uppercase no-bottom"><i class="ion-document"></i>Save</a>';
-                    invoice+='</div>';
-                    invoice+='<div class="clear"></div>';
+                invoice+='</div>';
             });
             $('.invoice-content').append(invoice);
         },

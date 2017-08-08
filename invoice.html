@@ -9,17 +9,38 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Epsilon 7.0</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" type="text/css" href="styles/skin.css">
-    <link rel="stylesheet" type="text/css" href="styles/framework.css">
-    <link rel="stylesheet" type="text/css" href="styles/ionicons.min.css">
-    <script type="text/javascript" src="scripts/jquery.js"></script>
-    <script type="text/javascript" src="scripts/plugins.js"></script>
-    <script type="text/javascript" src="scripts/custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/skin.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/konfig.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/penjualan.js"></script>
 </head>
 
 <body>
     <div id="page-transitions"></div>
+    	<div class="sidebars sidebars-light">    
+           
+            <div class="sidebar sidebar-right">
+                <div class="sidebar-header sidebar-header-classic">
+                    <a href="index.html" class="sidebar-logo">
+                    <strong>The Ultimate Mobile Solution</strong>
+                    </a>
+                </div>
+                <div class="menu-options icon-background sidebar-menu">
+                    <em class="menu-divider">Chart List</em>
+                    <a class="default-link" href="https://www.facebook.com/enabled.labs/"><i class="icon-bg facebook-bg ion-social-facebook"></i><span>Facebook</span><i class="ion-record"></i></a>
+                    <a class="default-link" href="https://twitter.com/iEnabled"><i class="icon-bg twitter-bg ion-social-twitter"></i><span>Twitter</span><i class="ion-record"></i></a>
+                    <a class="default-link" href="https://plus.google.com/u/1/105775801838187143320"><i class="icon-bg google-bg ion-social-googleplus"></i><span>Google +</span><i class="ion-record"></i></a>
+                </div>
+            </div>
+        </div>
+
         <div class="header header-logo-center header-dark">
             <a href="#" class="header-icon header-icon-1 hamburger-animated open-sidebar-left"></a>
             <a href="index.html" class="header-logo"></a>
@@ -35,370 +56,7 @@
                 </div>
                 <div class="decoration decoration-margins"></div>
                 <div class="content">
-                    <div class="one-half-responsive">
-                        <h4>Delivered Orders</h4>
-                        <p>
-                            Orderes succesfully delivered to you!
-                        </p>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-green-dark">Order ID: 1</strong>January 1, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-green-dark">Order ID: 2</strong>February 2, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-green-dark">Order ID: 3</strong>March 3, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-green-dark">Order ID: 4</strong>April 4, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="one-half-responsive last-column">
-                        <div class="decoration hide-if-responsive"></div>
-                        <h4>Pending or Canceled Orders</h4>
-                        <p>
-                            Orderes pending delivery or canceled by you.
-                        </p>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-yellow-dark">Order ID: 5</strong>May 5, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-yellow-dark">Order ID: 6</strong>June 6, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-red-dark">Order ID: 7</strong>July 7, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toggle store-history-toggle">
-                            <a href="#" class="toggle-title"><strong class="bg-red-dark">Order ID: 8</strong>August 8, 2025<i class="ion-android-add"></i></a>
-                            <div class="toggle-content">
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/1t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>ProMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-green-dark">Status: Delivered</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/2t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-red-dark">Status: Canceled</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="store-history-item">
-                                    <a href="#">
-                                        <img data-original="images/pictures/3t.jpg" alt="img" class="preload-image" src="images/empty.png">
-                                    </a>
-                                    <h1>BeMobile</h1>
-                                    <h2>Mobile andTablet Template</h2>
-                                    <h3 class="color-orange-dark">Status: Pending Delivery</h3>
-                                    <h4>Quantity: 12 Pieces</h4>
-                                    <h6>11.00 / item</h6>
-                                </div>
-                                <div class="cart-costs">
-                                    <h4>Delivery Details</h4>
-                                    <h5><strong>Unique ID</strong><em>#312312</em></h5>
-                                    <h5><strong>Status</strong><em>Delivered</em></h5>
-                                    <h5><strong>Taxes</strong><em>$40.00</em></h5>
-                                    <h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5>
-                                    <h6><strong>Grand Total</strong><em>$90.00</em></h6>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="one-half-responsive invoice-content">
                     </div>
                     <div class="clear"></div>
                 </div>
