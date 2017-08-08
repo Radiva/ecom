@@ -1,5 +1,5 @@
-function setIdKategori(id) {
-   window.localStorage.setItem('brand', id);
+function setIdBrand(id) {
+   window.localStorage.setItem('idbrand', id);
 }
 
 function tampilbrand(){
@@ -15,7 +15,7 @@ function tampilbrand(){
                 var prod = '';
                 prod+='';
                 $.each(res, function(key,value){
-                  prod+='<a class="swiper-slide" href="store-list.html" onclick="setIdKategori('+value.idbrand+')">';
+                  prod+='<a class="swiper-slide" href="product.html" onclick="setIdBrand('+value.idbrand+')">';
                   prod+='<u>'+value.namabrand+'</u>';
                   prod+='<img class="responsive-image" src='+base_url(value.logobrand)+' alt="img">';
                   prod+='<em class="overlay bg-red-dark"></em></a>';
@@ -32,10 +32,11 @@ function tampilbrand(){
 }
 
 function tampilproductbybrand(){
-    var id = window.localStorage.getItem('brand');
+    var id = window.localStorage.getItem('idbrand');
      $.ajax({
            type: "POST",
-            url:base_url('client/product.php?option=9&id='+id),
+            url:base_url('client/product.php?option=9'),
+            data: "idbrand="+id,
             dataType: "json",
             cache: false,
             crossDomain: true,
@@ -45,15 +46,21 @@ function tampilproductbybrand(){
                 var prod = '';
                 prod+='';
                 $.each(res, function(key,value){
-                  prod+='<div class="cart-item">';
-                  prod+='<img data-original='+base_url(value.gambar)+' alt="img" class="preload-image" src="images/empty.png">';
-                  prod+='<h1>'+value.namabarang+'</h1>';
-                  prod+='<h2>Rp.'+value.harga+'</h2>';
-                  prod+='<h3>'+value.deskripsi+'</h3>';
-                  prod+='</div>';
+                  prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')">';
+                    prod+='<img src="'+base_url(value.gambar)+'" alt="img">';
+                    prod+='<strong>'+value.namabarang+'</strong>';
+                    prod+='<em>'+value.deskripsi.substr(1,50)+'..</em>';
+                    prod+='<u>Rp. '+Number(value.harga).toLocaleString("id")+'</u>';
+                prod+='</a>';
+                  // prod+='<div class="cart-item">';
+                  // prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+')"><img data-original='+base_url(value.gambar)+' alt="img" class="preload-image" src="images/empty.png">';
+                  // prod+='<h1>'+value.namabarang+'</h1>';
+                  // prod+='<h2>Rp.'+value.harga+'</h2>';
+                  // prod+='<h3>'+value.deskripsi+'</h3>';
+                  // prod+='</a></div>';
                 });
                 //console.log(prod);
-                $('#lalala').prepend(prod);
+                $('.store-item-list').prepend(prod);
                 // alert("aaaa");
             },
             error: function(res){

@@ -17,7 +17,9 @@
     <script type="text/javascript" src="js/plugins.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/konfig.js"></script>
+    <script type="text/javascript" src="js/brand.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
     <script type="text/javascript" src="js/user.js"></script>
 
@@ -224,8 +226,10 @@
             $('div[data-include]').each(function(){
                $(this).load($(this).attr('data-include')+'.html').trigger('create'); 
             });
-            var idkategori = localStorage.getItem("idkategori");
-            displayproductbykategori(idkategori);
+            menu();
+            displayproductbykategori();
+            tampilproductbybrand();
+
         });
     </script>
     <script>

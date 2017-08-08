@@ -183,6 +183,9 @@
     
     <script>
         $(document).ready(function() {
+            window.localStorage.removeItem("idbrand");
+            window.localStorage.removeItem("idkategori");
+            menu();
             kategoriproduct();
             displaypopularproduct();
             tampilbrand();
