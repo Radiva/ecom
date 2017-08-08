@@ -46,7 +46,7 @@ function tampilproductbybrand(){
                 var prod = '';
                 prod+='';
                 $.each(res, function(key,value){
-                  prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+')">';
+                  prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')">';
                     prod+='<img src="'+base_url(value.gambar)+'" alt="img">';
                     prod+='<strong>'+value.namabarang+'</strong>';
                     prod+='<em>'+value.deskripsi.substr(1,50)+'..</em>';

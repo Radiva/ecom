@@ -1,8 +1,9 @@
 function setIdKategori(idkategori){
     window.localStorage.setItem("idkategori", idkategori);
 }
-function setIdBarang(idbarang){
+function setIdBarang(idbarang,harga){
     window.localStorage.setItem("idbarang", idbarang);
+    window.localStorage.setItem("harga", harga);
 }
 
 function kategoriproduct(){
@@ -50,7 +51,7 @@ function displayproductbykategori(){
             console.log(res);
             var item = '';
             $.each(res, function(key,value){
-                item+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+')">';
+                item+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')">';
                     item+='<img src="images/pictures/1t.jpg" alt="img">';
                     item+='<strong>'+value.namabarang+'</strong>';
                     item+='<em>'+value.deskripsi.substr(1,50)+'..</em>';
@@ -99,7 +100,7 @@ function displaydetailproduct(idbarang){
                 detail+='</div>';
                 detail+='<div class="content full-bottom">';
                     detail+='<div class="one-half">';
-                        detail+='<a href="#" class="button button-icon button-blue button-round button-full button-xs no-bottom"><i class="ion-social-usd"></i>Purchase</a>';
+                        detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=addToCart()><i class="ion-social-usd"></i>Purchase</div>';
                     detail+='</div>';
                     detail+='<div class="one-half last-column">';
                         detail+='<a href="#" class="button button-icon button-green button-round button-full button-xs no-bottom"><i class="ion-android-bookmark"></i>Wishlist</a>';
