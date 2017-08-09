@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+    generatenota();
     invoice();
 });
 
@@ -12,7 +13,6 @@ function generatenota(){
         data:"username=mimin",
         success: function(res){
             console.log(res);
-            invoice(res);
          },
         error: function(res){
            console.log("gagal");
