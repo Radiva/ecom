@@ -42,7 +42,10 @@ switch($option){
 					echo json_encode(false);
 				}
 		}
-		
+		else{
+			echo json_encode(false);
+		}
+
 	break;
 
 	// get detail penjualan
