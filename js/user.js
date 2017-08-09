@@ -72,7 +72,8 @@ function setSession(data)
 {
     window.localStorage.setItem("username", data.username);
     window.localStorage.setItem("namagroupuser", data.namagroupuser);
-    window.location = 'index.html';
+    //window.location = 'index.html';
+    window.history.back();
 }
 
 function getSession(){

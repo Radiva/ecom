@@ -1,8 +1,10 @@
 
 function tampilCart() {
+    var id3 = window.localStorage.getItem("username");
 	$.ajax({
            type: "POST",
             url:base_url('client/cart.php?fnc=1'),
+            data: "user="+id3,
             dataType: "json",
             cache: false,
             crossDomain: true,
@@ -32,6 +34,14 @@ function tampilCart() {
 
         });
     }
+
+function cekPelanggan() {
+    if (getSession()) {
+        addToCart();
+    } else {
+        window.location = "login.html";
+    }
+}
 
 function addToCart() {
     var id1 = localStorage.getItem("idbarang");
