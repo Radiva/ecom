@@ -36,12 +36,13 @@ function tampilCart() {
 function addToCart() {
     var id1 = localStorage.getItem("idbarang");
     var id2 = localStorage.getItem("harga");
+    var id3 = window.localStorage.getItem("username");
     $('.button-blue').click(function() {
         //console.log(id1+", "+id2);
         $.ajax({
            type: "POST",
             url:base_url('client/cart.php?fnc=2'),
-            data: {idbarang:id1, harga:id2},
+            data: {idbarang:id1, harga:id2, username:id3},
             dataType: "json",
             cache: false,
             crossDomain: true,
