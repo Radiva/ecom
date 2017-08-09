@@ -1,16 +1,17 @@
 jQuery(document).ready(function() {
-    generatenota();
-    invoice('willy');
+    $data = getSession();
+    generatenota($data['username']);
+    invoice($data['username']);
 });
 
-function generatenota(){
+function generatenota(username){
     $.ajax({
        type: "POST",
         url:base_url('client/penjualan.php?option=1'),
         dataType: "json",
         cache: false,
         crossDomain: true,
-        data:"username=willy",
+        data:"username="+username,
         success: function(res){
             console.log(res);
          },
