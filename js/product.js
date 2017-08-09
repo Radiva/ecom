@@ -100,7 +100,7 @@ function displaydetailproduct(idbarang){
                 detail+='</div>';
                 detail+='<div class="content full-bottom">';
                     detail+='<div class="one-half">';
-                        detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=addToCart()><i class="ion-social-usd"></i>Purchase</div>';
+                        detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=cekPelanggan()><i class="ion-social-usd"></i>Purchase</div>';
                     detail+='</div>';
                     detail+='<div class="one-half last-column">';
                         detail+='<a href="#" class="button button-icon button-green button-round button-full button-xs no-bottom"><i class="ion-android-bookmark"></i>Wishlist</a>';
