@@ -42,7 +42,7 @@ function insertdetailpenjualan($Data){
 
 function getpenjualan($username){
 
-	$sql = "select a.*, SUM(b.jumlah * b.hargajual) as totalharga, c.namakategoripembayaran from tblpenjualan a INNER JOIN tbldetailpenjualan b ON a.notapemesanan = b.notapemesanan INNER JOIN tblkategoripembayaran c ON a.idkategoripembayaran = c.idkategoripembayaran where a.notapemesanan = '$username' GROUP BY b.notapemesanan";
+	$sql = "select a.*, SUM(b.jumlah * b.hargajual) as totalharga, c.namakategoripembayaran from tblpenjualan a INNER JOIN tbldetailpenjualan b ON a.notapemesanan = b.notapemesanan INNER JOIN tblkategoripembayaran c ON a.idkategoripembayaran = c.idkategoripembayaran where a.usernamepembeli= '$username' GROUP BY b.notapemesanan";
 	$query = mysql_query($sql);
 	if(mysql_num_rows($query)>0){
 		$penjualan = array();

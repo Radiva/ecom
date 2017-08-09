@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
     generatenota();
-    invoice();
+    invoice('willy');
 });
 
 function generatenota(){
@@ -10,7 +10,7 @@ function generatenota(){
         dataType: "json",
         cache: false,
         crossDomain: true,
-        data:"username=mimin",
+        data:"username=willy",
         success: function(res){
             console.log(res);
          },
@@ -20,11 +20,11 @@ function generatenota(){
     });
 }
 
-function invoice(){
+function invoice(username){
       
     $.ajax({
         type: "POST",
-        data:"username=mimin",
+        data:"username="+username,
         url:base_url('client/penjualan.php?option=2'),
         dataType: "json",
         cache: false,
