@@ -37,7 +37,7 @@ function addToCart() {
     var id1 = localStorage.getItem("idbarang");
     var id2 = localStorage.getItem("harga");
     var id3 = window.localStorage.getItem("username");
-    $('.button-blue').click(function() {
+    //$('.button-blue').click(function() {
         //console.log(id1+", "+id2);
         $.ajax({
            type: "POST",
@@ -54,5 +54,5 @@ function addToCart() {
             }
             
         });
-    }); 
+    //}); 
 }

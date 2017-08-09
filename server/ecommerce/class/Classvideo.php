@@ -3,7 +3,7 @@
 class video
 {
    function displayvideo(){
-   		$sql = "select * from tblvideo";
+   		$sql = "select * from tblVideo";
    		$query = mysql_query($sql);
 
    		if(mysql_num_rows($query)>0){

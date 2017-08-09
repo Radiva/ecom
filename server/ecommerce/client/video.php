@@ -9,27 +9,27 @@ $video = new video;
 
 switch ($option) {
 
-	//display banner
+	//display video
 	case 1:
-		$displayvideo = $banner->displayvideo();
+		$displayvideo = $video->displayvideo();
 		echo json_encode($displayvideo);
 	break;
 
-	// insert banner
+	// insert video
 	case 2:
 		$data = array(
 			'title' => $_POST['title'],
 			'video'=> $_POST['video'],
 		);
 
-		$insertvideo = $banner->insertvideo($data);
+		$insertvideo = $video->insertvideo($data);
 		echo json_encode($insertvideo);
 	break;
 
-	// delete banner
+	// delete video
 	case 3:
 		$idvideo = $_POST['idvideo'];
-		$deletevideo = $banner->deletevideo($idvideo);
+		$deletevideo = $video->deletevideo($idvideo);
 		echo json_encode($deletevideo);
 	break;
 }

@@ -51,13 +51,13 @@ switch($option){
         break;
 
     case 9:
-        $id = $_GET['id'];
+        $id = $_POST['idbrand'];
         $data = $product->displayProductByBrand($id);
         echo json_encode($data);
         break;
 
     case 10:
-        $id = $_GET['id'];
+        $id = $_POST['id'];
         $data = $product->tampilreviewproduct($id);
         echo json_encode($data);
         break;

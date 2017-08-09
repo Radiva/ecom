@@ -3,7 +3,7 @@
 class banner
 {
    function displaybanner(){
-   		$sql = "select * from tblbanner";
+   		$sql = "select * from tblBanner";
    		$query = mysql_query($sql);
 
    		if(mysql_num_rows($query)>0){
