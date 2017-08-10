@@ -100,10 +100,11 @@ function displaydetailproduct(idbarang){
                 detail+='</div>';
                 detail+='<div class="content full-bottom">';
                     detail+='<div class="one-half">';
-                        detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=cekPelanggan()><i class="ion-social-usd"></i>Purchase</div>';
+                        //detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=cekPelanggan()><i class="ion-social-usd"></i>Purchase</div>';
+                        //detail+='<div class="cart-item-1"><a href="#" class="add-qty"><i class="ion-plus-round"></i></a><input type="text" value="1" class="qty"><a href="#" class="substract-qty"><i class="ion-minus-round"></i></div>';
                     detail+='</div>';
                     detail+='<div class="one-half last-column">';
-                        detail+='<a href="#" class="button button-icon button-green button-round button-full button-xs no-bottom"><i class="ion-android-bookmark"></i>Wishlist</a>';
+                        detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=cekPelanggan()><i class="ion-social-usd"></i>Purchase</div>';
                     detail+='</div>';
                     detail+='<div class="clear"></div>';
                     detail+='<div class="decoration half-bottom full-top"></div>';

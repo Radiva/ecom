@@ -74,7 +74,7 @@
 <div class="clear"></div>
 <div class="decoration"></div>
 <div class="cart-costs">
-<h4>Estimated Costs</h4>
+<!-- <h4>Estimated Costs</h4>
 <h5><strong>Packaging</strong><em class="color-red-dark">$0.00</em></h5>
 <h5><strong>Delivery</strong><em>$60.00</em></h5>
 <h5><strong>Taxes</strong><em>$40.00</em></h5>
@@ -82,7 +82,7 @@
 <h6><strong>Grand Total</strong><em>$90.00</em></h6>
 <div class="clear"></div>
 <a href="invoice.html" class="button button-green button-full half-top">Proceed to Checkout</a>
-<a href="store-cart-2.html" class="button button-red button-full half-top">Check Version 2</a>
+<a href="store-cart-2.html" class="button button-red button-full half-top">Check Version 2</a> -->
 </div>
 <div class="clear"></div>
 </div>
@@ -139,7 +139,14 @@ Email
 	<script>
         $(document).ready(function() {
             tampilCart();
+            updatejumlah();
         });
+
+        function hapusItem($id){
+            deleteFromCart($id);
+            $('.tampilkan').load(document.URL +  ' .tampilkan');
+            //tampilCart();
+        }
     </script>
 
 <script>

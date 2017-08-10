@@ -11,8 +11,15 @@ class cart
 		$columns = implode(", ",array_keys($DataProduct));
         $escaped_values = array_map('mysql_real_escape_string', array_values($DataProduct));
         $values  = implode("', '", $escaped_values);
-        $sql = "INSERT INTO tblCart($columns) VALUES ('$values')";
-        return mysql_query($sql) ? true : $columns;
+        $sql = "SELECT * FROM tblCart WHERE idsession = '$DataProduct[idsession]' AND idproduct = '$DataProduct[idproduct]'";
+        $query = mysql_query($sql);
+        if (mysql_num_rows($query)>0) {
+        	$row = mysql_fetch_array($query);
+        	$sql = "UPDATE tblCart SET jumlah = jumlah+1 WHERE idcart = '$row[idcart]'";
+        } else {
+        	$sql = "INSERT INTO tblCart($columns) VALUES ('$values')";
+        }        
+        return mysql_query($sql) ? true : false;
 
 	}
 
@@ -32,8 +39,8 @@ class cart
         }
 	}
 
-	function deleteitemcart($product,$session) {
-		$sql = "DELETE FROM tblCart WHERE idproduct = '$product' AND idsession = '$session'";
+	function deleteitemcart($cartid) {
+		$sql = "DELETE FROM tblCart WHERE idcart = '$cartid'";
 		return mysql_query($sql) ? true : false;
 
 	}
@@ -43,9 +50,19 @@ class cart
 		return mysql_query($sql) ? true : false;
 	}
 
-	function updatejumlahitem($cart) {
-		$sql = "SELECT SUM(jumlah) AS jumlahitem FROM tblCart WHERE idcart = $cart";
-		return mysql_query($sql);
+	function updatejumlah($idsession) {
+		$sql = "SELECT SUM(jumlah) AS jumlahitem, SUM(jumlah * harga) AS hargatotal FROM tblCart WHERE idsession = '$idsession'";
+		$query = mysql_query($sql);
+		if(mysql_num_rows($query)>0){
+	    $arr = array();
+	    while($row = mysql_fetch_array($query)){
+	    	array_push($arr, array("jumlahitem" => $row['jumlahitem'], "hargatotal" => $row['hargatotal']));
+  	    }
+	    return $arr;
+        }
+        else{
+            return false;
+        }
 	}
 }
 ?>
