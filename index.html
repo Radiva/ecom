@@ -52,27 +52,12 @@
             <div id="page-content-scroll">
                 <div class="store-slider no-bottom">
                     <div class="swiper-wrapper bannershow">
-                       <!--  <a href="#" class="swiper-slide store-slider-item">
-                            <em class="bg-red-dark">$19<u>99</u></em>
-                            <img class="responsive-image" src="images/pictures/1.jpg" alt="img">
-                            <h3>Buy one get one free!</h3>
-                        </a>
-                        <a href="#" class="swiper-slide store-slider-item">
-                            <em class="bg-green-dark">$29<u>99</u></em>
-                            <img class="responsive-image" src="images/pictures/2.jpg" alt="img">
-                            <h3>Last minute offer!</h3>
-                        </a>
-                        <a href="#" class="swiper-slide store-slider-item">
-                            <em class="bg-blue-dark">$99<u>99</u></em>
-                            <img class="responsive-image" src="images/pictures/3.jpg" alt="img">
-                            <h3>Best Selling Item</h3>
-                        </a> -->
                     </div>
                 </div>
 
-                <p class="category-title">
+                <p class="category-title popular-title">
                     Popular Product
-                    <a href="#">See All</a>
+                    <a href="product2.html" onclick="setTitle('popular')">See All</a>
                 </p>
                 <div class="clear"></div>
                 <div class="category-slider">
@@ -81,9 +66,9 @@
                     </div>
                 </div>
 
-                 <p class="category-title">
+                 <p class="category-title brand-title">
                     Browse by Brand
-                    <a href="#">See All</a>
+                    <a href="product2.html" onclick="setTitle('brand')">See All</a>
                 </p>
                 <div class="clear"></div>
                 <div class="store-thumbnails">
@@ -91,9 +76,9 @@
                     </div>
                 </div>
 
-                <p class="category-title">
+                <p class="category-title kategori-title">
                     Browse by Category
-                    <a href="#">See All</a>
+                    <a href="product2.html" onclick="setTitle('kategori')">See All</a>
                 </p>
                 <div class="clear"></div>
                 <div class="store-thumbnails">
@@ -186,6 +171,7 @@
         $(document).ready(function() {
             window.localStorage.removeItem("idbrand");
             window.localStorage.removeItem("idkategori");
+            window.localStorage.removeItem("title");
             menu();
             kategoriproduct();
             displaypopularproduct();

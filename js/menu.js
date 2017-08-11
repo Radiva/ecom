@@ -1,6 +1,5 @@
 jQuery(document).ready(function($) {
 	menu();
-	menukategori();
 	ceklogin();
 });
 
@@ -12,31 +11,6 @@ function menu(){
         }
     });
 
-}
-
-function menukategori(){
-	$.ajax({
-       type: "POST",
-        url:base_url('client/product.php?option=3'),
-        dataType: "json",
-        cache: false,
-        crossDomain: true,
-        success: function(res){
-            console.log(res);
-            var i = 0;
-            var kategori = '';
-           
-            $.each(res, function(key,value){
-                i++;
-                kategori+='<a href="product.html" onclick="setIdKategori('+value.idkategori+')"><span>'+value.namakategori+'</span></a>';
-            });
-            $('.menu-kategori').after(kategori);
-        },
-        error: function(res){
-           console.log(res);
-        }
-        
-    });
 }
 
 function ceklogin(){
