@@ -58,7 +58,7 @@ function tampilbrand(){
                 var prod = '';
                 prod+='';
                 $.each(res, function(key,value){
-                  prod+='<a class="swiper-slide" href="product.html" onclick="setIdBrand('+value.idbrand+')">';
+                  prod+='<a class="swiper-slide" href="product2.html" onclick="setIdBrand('+value.idbrand+')">';
                   prod+='<u>'+value.namabrand+'</u>';
                   prod+='<img class="responsive-image" src='+base_url(value.logobrand)+' alt="img">';
                   prod+='<em class="overlay bg-red-dark"></em></a>';
@@ -84,22 +84,20 @@ function tampilproductbybrand(){
             cache: false,
             crossDomain: true,
             success: function(res){
-                var i=0;
                 console.log(res);
                 var prod = '';
-                prod+='';
                 $.each(res, function(key,value){
-                  prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')">';
-                    prod+='<img src="'+base_url(value.gambar)+'" alt="img">';
-                    prod+='<strong>'+value.namabarang+'</strong>';
-                    prod+='<em>'+value.deskripsi.substr(1,50)+'..</em>';
-                    prod+='<u>Rp. '+Number(value.harga).toLocaleString("id")+'</u>';
-                prod+='</a>';
+                    prod+='<div class="store-item">';
+                        prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')"><img src="images/pictures/1.jpg" alt="img"></a>';
+                        prod+='<a href="#" class="scale-hover store-item-button-1"><i class="ion-ios-cart"></i></a>';
+                        prod+='<strong>'+value.namabarang+'</strong>';
+                        prod+='<em>Rp. '+Number(value.harga).toLocaleString("id")+'</em>';
+                    prod+='</div>';
                 });
-                $('.store-item-list').prepend(prod);
+                $('.store-items').prepend(prod);
             },
             error: function(res){
-               console.log("gagal");
+               console.log(res);
             }
 
         });
@@ -121,7 +119,7 @@ function kategoriproduct(){
             $.each(res, function(key,value){
                 i++;
                 if(w>warna.length)w=0;
-                kategori+='<a class="swiper-slide" href="product.html" onclick="setIdKategori('+value.idkategori+')">';
+                kategori+='<a class="swiper-slide" href="product2.html" onclick="setIdKategori('+value.idkategori+')">';
                 kategori+='<u>'+value.namakategori+'</u>';
                 kategori+='<img class="responsive-image" src="images/pictures/'+i+'t.jpg" alt="img">';
                 kategori+='<em class="overlay '+warna[w]+'"></em>';
@@ -148,16 +146,16 @@ function displayproductbykategori(){
         crossDomain: true,
         success: function(res){
             console.log(res);
-            var item = '';
-            $.each(res, function(key,value){
-                item+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')">';
-                    item+='<img src="images/pictures/1t.jpg" alt="img">';
-                    item+='<strong>'+value.namabarang+'</strong>';
-                    item+='<em>'+value.deskripsi.substr(1,50)+'..</em>';
-                    item+='<u>Rp. '+Number(value.harga).toLocaleString("id")+'</u>';
-                item+='</a>';
-            });
-            $('.store-item-list').prepend(item);
+                var prod = '';
+                $.each(res, function(key,value){
+                    prod+='<div class="store-item">';
+                        prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')"><img src="images/pictures/1.jpg" alt="img"></a>';
+                        prod+='<a href="#" class="scale-hover store-item-button-1"><i class="ion-ios-cart"></i></a>';
+                        prod+='<strong>'+value.namabarang+'</strong>';
+                        prod+='<em>Rp. '+Number(value.harga).toLocaleString("id")+'</em>';
+                    prod+='</div>';
+                });
+                $('.store-items').prepend(prod);
         },
         error: function(res){
            console.log(res);

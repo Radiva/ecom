@@ -51,42 +51,7 @@
                 <div class="decoration"></div>
                 <div class="content">
                     <div class="store-items">
-                        <div class="store-item">
-                            <a href="#"><img src="images/pictures/1.jpg" alt="img"></a>
-                            <a href="#" class="scale-hover store-item-button-1"><i class="ion-heart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-2"><i class="ion-ios-cart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-3"><i class="ion-ios-star"></i></a>
-                            <strong>Pro - Site Template</strong>
-                            <em>$11.00</em>
-                            <em class="discount">$24.00</em>
-                        </div>
-                        <div class="store-item">
-                            <a href="#"><img src="images/pictures/2.jpg" alt="img"></a>
-                            <a href="#" class="scale-hover store-item-button-1"><i class="ion-heart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-2"><i class="ion-ios-cart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-3"><i class="ion-ios-star"></i></a>
-                            <strong>Wheels - Site Template</strong>
-                            <em>$11.00</em>
-                            <em class="offer"><i class="ion-android-car"></i>Free Shipping</em>
-                        </div>
-                        <div class="store-item">
-                            <a href="#"><img src="images/pictures/3.jpg" alt="img"></a>
-                            <a href="#" class="scale-hover store-item-button-1"><i class="ion-heart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-2"><i class="ion-ios-cart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-3"><i class="ion-ios-star"></i></a>
-                            <strong>Circle - Site Template</strong>
-                            <em>$11.00</em>
-                            <em class="offer">9% Discount</em>
-                        </div>
-                        <div class="store-item">
-                            <a href="#"><img src="images/pictures/4.jpg" alt="img"></a>
-                            <a href="#" class="scale-hover store-item-button-1"><i class="ion-heart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-2"><i class="ion-ios-cart"></i></a>
-                            <a href="#" class="scale-hover store-item-button-3"><i class="ion-ios-star"></i></a>
-                            <strong>Clean - Site Template</strong>
-                            <em>$11.00</em>
-                            <em class="offer"><i class="ion-cube"></i>1 + 1 Free</em>
-                        </div>
+                        
                         <div class="clear"></div>
                     </div>
                     
@@ -133,10 +98,15 @@
             </div>
         </div>
     <script>
-    	jQuery(document).ready(function($) {
-    		var title = window.localStorage.getItem('title');
-    		getTitle(title);
-    	});
+    	$(document).ready(function() {
+            $('div[data-include]').each(function(){
+               $(this).load($(this).attr('data-include')+'.html').trigger('create'); 
+            });
+            menu();
+            displayproductbykategori();
+            tampilproductbybrand();
+
+        });
     </script>
     <script>
         /* <![CDATA[ */
