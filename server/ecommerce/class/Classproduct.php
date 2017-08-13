@@ -24,13 +24,15 @@ class product
 	}
 
 	function displayProductByBrand($id) {
-		$sql = "SELECT * FROM tblProduct JOIN tblBrand ON tblBrand.idbrand = tblProduct.idbrand JOIN tblKategoriProduct ON tblKategoriProduct.idkategori = tblProduct.idkategori WHERE tblProduct.idbrand = '$id'";
+		$sql = "SELECT * FROM tblbrand a INNER JOIN tblproduct b ON b.idbrand = a.idbrand INNER JOIN tblkategoriproduct c ON c.idkategori = b.idkategori WHERE a.idbrand = '$id'";
 		$query = mysql_query($sql);
 
 		if(mysql_num_rows($query)>0){
 	    $arr = array();
 	    while($row = mysql_fetch_array($query)){
-	    	array_push($arr, array("idbarang" => $row['idbarang'], "namabarang" => $row['namabarang'] , "deskripsi" => $row['deskripsi'] , "gambar" => $row['gambar'], "video" => $row['video'], "brand" => $row['namabrand'], "kategori" => $row['namakategori'], "harga" => $row['harga']));
+		$idbarang = $row['idbarang'];
+		$gambar = mysql_fetch_array(mysql_query("select * from tblgambarproduct where idbarang = '$idbarang' limit 1"));
+	    	array_push($arr, array("idbarang" => $row['idbarang'], "idbrand" => $row['idbrand'], 'namabrand'=>$row['namabrand'],'idkategori'=>$row['idkategori'], "namabarang" => $row['namabarang'] , "deskripsi" => $row['deskripsi'] , "gambar" => $gambar['gambar'], "video" => $row['video'], "brand" => $row['namabrand'], "kategori" => $row['namakategori'], "harga" => $row['harga']));
   	    }
 	    return $arr;
         }
@@ -40,13 +42,13 @@ class product
 	}
 
 	function tampilreviewproduct($id) {
-		$sql = "SELECT * FROM tblReviewProduct WHERE idbarang = '$id' ORDER BY idreviewproduct DESC";
+		$sql = "SELECT * FROM tblproductreview WHERE Idbarang = '$id' ORDER BY idproductreview DESC";
 		$query = mysql_query($sql);
 
 		if(mysql_num_rows($query)>0){
 	    $arr = array();
 	    while($row = mysql_fetch_array($query)){
-	    	array_push($arr, array("idreviewproduct" => $row['idreviewproduct'], "username" => $row['username'] , "idbarang" => $row['idbarang'] , "comment" => $row['comment']));
+	    	array_push($arr, array("idproductreview" => $row['Idproductreview'], "username" => $row['Username'] , "idbarang" => $row['Idbarang'] , "comment" => $row['Comment'], 'tanggalcomment'=>$row['tanggalcomment']));
   	    }
 	    return $arr;
         }
@@ -55,9 +57,12 @@ class product
         }
 	}
 
-	function insertreviewproduct($user,$barang,$comment) {
-		$sql = "INSERT INTO tblReviewProduct VALUES (null,$user,$barang,$comment)";
-		return mysql_query($sql) ? true : false;
+	function insertreviewproduct($Data) {
+		$columns = implode(", ",array_keys($Data));
+        	$escaped_values = array_map('mysql_real_escape_string', array_values($Data));
+        	$values  = implode("', '", $escaped_values);
+	        $sql = "INSERT INTO tblproductreview($columns) VALUES ('$values')";
+        	return mysql_query($sql) ? true : false;
 	}
 
 	function displayallproduct(){
@@ -121,11 +126,13 @@ function displayproductbykategori($idkategori){
 			$namabarang = $data['namabarang'];
 			$deskripsi = $data['deskripsi'];
 			$harga = $data['harga'];
+			$gambar = mysql_fetch_array(mysql_query("select * from tblgambarproduct where idbarang = '$idbarang' limit 1"));
 			array_push($arr, array(
 				'idbarang'=>$idbarang,
 				'namabarang'=>$namabarang, 
 				'deskripsi'=>$deskripsi,
 				'harga'=>$harga,
+				'gambar'=>$gambar['gambar']
 			));
 		}
 		
@@ -184,7 +191,7 @@ function displaydetailproduct($idbarang){
 }
 
 function displaypopularproduct(){
-	$sql = "SELECT a.idbarang, b.namabarang, b.deskripsi, b.harga, b.idkategori, c.namakategori, b.idbrand, d.namabrand,  SUM(a.jumlah) as jumlahpenjualan FROM tblDetailPenjualan a INNER JOIN tblProduct b ON b.idbarang = a.idbarang INNER JOIN tblKategoriProduct c ON c.idkategori = b.idkategori INNER JOIN tblBrand d ON d.idbrand = b.idbrand GROUP BY a.idbarang ORDER BY jumlahpenjualan DESC";
+	$sql = "SELECT a.idbarang, b.namabarang, b.deskripsi, b.harga, b.idkategori, c.namakategori, b.idbrand, d.namabrand,  SUM(a.jumlah) as jumlahpenjualan FROM tblDetailPenjualan a INNER JOIN tblProduct b ON b.idbarang = a.idbarang INNER JOIN tblKategoriProduct c ON c.idkategori = b.idkategori INNER JOIN tblBrand d ON d.idbrand = b.idbrand INNER JOIN tblpenjualan e ON e.notapemesanan = a.notapemesanan WHERE e.statuspenjualan != 'Pending' GROUP BY a.idbarang ORDER BY jumlahpenjualan DESC";
 	$query = mysql_query($sql);
 	if(mysql_num_rows($query)>0){
 		$arr = array();
@@ -197,8 +204,8 @@ function displaypopularproduct(){
 			$namakategori = $data['namakategori'];
 			$idbrand = $data['idbrand'];
 			$namabrand = $data['namabrand'];
-
-			array_push($arr, array('idbarang'=>$idbarang, 'namabarang'=>$namabarang, 'deskripsi'=>$deskripsi, 'harga'=>$harga, 'idkategori'=>$idkategori, 'namakategori'=>$namakategori, 'idbrand'=>$idbrand, 'namabrand'=>$namabrand));
+			$gambar = mysql_fetch_array(mysql_query("select * from tblgambarproduct where idbarang = '$idbarang' limit 1"));
+			array_push($arr, array('idbarang'=>$idbarang, 'namabarang'=>$namabarang, 'gambar'=>$gambar['gambar'], 'deskripsi'=>$deskripsi, 'harga'=>$harga, 'idkategori'=>$idkategori, 'namakategori'=>$namakategori, 'idbrand'=>$idbrand, 'namabrand'=>$namabrand));
 		}
 		return $arr;
 	}
@@ -222,8 +229,9 @@ function displaybestoffer(){
 			$namakategori = $data['namakategori'];
 			$idbrand = $data['idbrand'];
 			$namabrand = $data['namabrand'];
+			$gambar = mysql_fetch_array(mysql_query("select * from tblgambarproduct where idbarang = '$idbarang' limit 1"));
 
-			array_push($arr, array('idbarang'=>$idbarang, 'namabarang'=>$namabarang, 'deskripsi'=>$deskripsi, 'harga'=>$harga, 'idkategori'=>$idkategori, 'namakategori'=>$namakategori, 'idbrand'=>$idbrand, 'namabrand'=>$namabrand));
+			array_push($arr, array('idbarang'=>$idbarang, 'namabarang'=>$namabarang, 'gambar'=>$gambar['gambar'], 'deskripsi'=>$deskripsi, 'harga'=>$harga, 'idkategori'=>$idkategori, 'namakategori'=>$namakategori, 'idbrand'=>$idbrand, 'namabrand'=>$namabrand));
 		}
 		return $arr;
 	}

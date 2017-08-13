@@ -17,7 +17,7 @@ switch($option){
 			'namabelakang'=>$_POST['namabelakang'],
 			'notelp'=>$_POST['notelp'],
 			'alamat'=>$_POST['alamat'],
-			'idgroupuser'=>$_POST['idgroupuser'],
+			'idgroupuser'=>2,
 			'tgllahir'=>$_POST['tgllahir'],
 			'email'=>$_POST['email'],
 		);

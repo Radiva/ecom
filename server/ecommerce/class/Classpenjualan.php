@@ -3,16 +3,28 @@
 class penjualan{
 
 function insertpenjualan($Data){
-		$columns = implode(", ",array_keys($Data));
+	$columns = implode(", ",array_keys($Data));
         $escaped_values = array_map('mysql_real_escape_string', array_values($Data));
         $values  = implode("', '", $escaped_values);
         $sql = "INSERT INTO tblpenjualan($columns) VALUES ('$values')";
         return mysql_query($sql) ? $Data : false;
 }
 
-function charttodetail($username){
-		$sql = "select a.notapemesanan, b.idsession as username, b.idproduct as idbarang, b.jumlah, b.harga from tblpenjualan a INNER JOIN tblcart b ON a.usernamepembeli = b.idsession WHERE a.usernamepembeli = '$username'";
-		$query = mysql_query($sql);
+function cekpenjualanpending($username){
+	$sql = "select*from tblpenjualan where statuspenjualan = 'Pending' and usernamepembeli = '$username'";
+	$query = mysql_query($sql);
+	if(mysql_num_rows($query)>0){
+		$data = mysql_fetch_array($query);
+		return $data['notapemesanan'];
+	}
+	else{
+		return false;
+	}
+}
+
+function charttodetail($username, $notapemesanan){
+	$sql = "select a.notapemesanan, b.idsession as username, b.idproduct as idbarang, b.jumlah, b.harga from tblpenjualan a INNER JOIN tblcart b ON a.usernamepembeli = b.idsession WHERE a.usernamepembeli = '$username' AND a.notapemesanan='$notapemesanan'";
+	$query = mysql_query($sql);
 		$jmlbarang = 0;
 		$jmlbarangpindah = 0;
 		while($datapenjualan = mysql_fetch_array($query)){

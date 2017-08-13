@@ -30,7 +30,9 @@ class cart
 		if(mysql_num_rows($query)>0){
 	    $arr = array();
 	    while($row = mysql_fetch_array($query)){
-	    	array_push($arr, array("idcart" => $row['idcart'], "tanggal" => $row['tanggal'] , "idsession" => $row['idsession'], "idproduct" => $row['idproduct'], "namabarang" => $row['namabarang'], "gambar" => $row['gambar'], "deskripsi" => $row['deskripsi'], "jumlah" => $row['jumlah'], "harga" => $row['harga']));
+		$idbarang = $row['idbarang'];
+		$gambar = mysql_fetch_array(mysql_query("select * from tblgambarproduct where idbarang = '$idbarang' limit 1"));
+	    	array_push($arr, array("idcart" => $row['idcart'], "tanggal" => $row['tanggal'] , "idsession" => $row['idsession'], "idproduct" => $row['idproduct'], "namabarang" => $row['namabarang'], "gambar" => $gambar['gambar'], "deskripsi" => $row['deskripsi'], "jumlah" => $row['jumlah'], "harga" => $row['harga']));
   	    }
 	    return $arr;
         }
