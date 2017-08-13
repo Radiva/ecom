@@ -1,6 +1,7 @@
 jQuery(document).ready(function($) {
 	menu();
 	ceklogin();
+	cartList();
 });
 
 function menu(){
@@ -32,6 +33,3 @@ function logout(){
     window.location = 'index.html';
 }
 
-function register(){
-	
-}

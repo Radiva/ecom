@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
-    // $data = getSession();
-    generatenota('willy');
-    invoice('willy');
+    var data = getSession();
+    generatenota(data['username']);
+    invoice(data['username']);
 });
 
 function generatenota(username){

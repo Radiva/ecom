@@ -20,6 +20,7 @@
     <script type="text/javascript" src="js/brand.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
     <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/cart.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/banner.js"></script>
 </head>
@@ -34,11 +35,9 @@
                     <strong>The Ultimate Mobile Solution</strong>
                     </a>
                 </div>
-                <div class="menu-options icon-background sidebar-menu">
+                <div class="menu-options icon-background sidebar-menu cartList-menu">
                     <em class="menu-divider">Chart List</em>
-                    <a class="default-link" href="https://www.facebook.com/enabled.labs/"><i class="icon-bg facebook-bg ion-social-facebook"></i><span>Facebook</span><i class="ion-record"></i></a>
-                    <a class="default-link" href="https://twitter.com/iEnabled"><i class="icon-bg twitter-bg ion-social-twitter"></i><span>Twitter</span><i class="ion-record"></i></a>
-                    <a class="default-link" href="https://plus.google.com/u/1/105775801838187143320"><i class="icon-bg google-bg ion-social-googleplus"></i><span>Google +</span><i class="ion-record"></i></a>
+                    <div class="list-cart"></div>
                 </div>
             </div>
         </div>
@@ -172,6 +171,8 @@
             window.localStorage.removeItem("idbrand");
             window.localStorage.removeItem("idkategori");
             window.localStorage.removeItem("title");
+            window.localStorage.removeItem("idbarang");
+            window.localStorage.removeItem("harga");
             menu();
             kategoriproduct();
             displaypopularproduct();

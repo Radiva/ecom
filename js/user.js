@@ -1,5 +1,6 @@
 function login(){
     $('.login-button').click(function() {
+        console.log($('#form-login').serialize());
         $.ajax({
            type: "POST",
             url:base_url('client/user.php?option=3'),
