@@ -169,7 +169,7 @@ function addJumlahItem($cartid) {
                 }
             },
             error: function(res){
-               console.log(res+' error');
+               console.log(res);
             }
             
         });
@@ -190,7 +190,7 @@ function substractJumlahItem($cartid) {
                 }
             },
             error: function(res){
-               console.log(res+' error');
+               console.log(res);
             }
             
         });

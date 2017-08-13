@@ -34,7 +34,10 @@ switch($option){
 				$insertpenjualan = $penjualan->insertpenjualan($data);
 				if($insertpenjualan){
 					$charttodetail = $penjualan->charttodetail($username, $notapemesanan);
-					echo json_encode($charttodetail);
+					if($charttodetail){
+						$datapenjualan = $penjualan->getpenjualan($username);
+						echo json_encode($datapenjualan);
+					}
 				}else{
 					echo json_encode(false);
 				}
@@ -46,7 +49,8 @@ switch($option){
 			}
 		}
 		else{
-			echo json_encode(false);
+			$datapenjualan = $penjualan->getpenjualan($username);
+			echo json_encode($datapenjualan);
 		}
 
 	break;
