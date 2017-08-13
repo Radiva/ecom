@@ -66,5 +66,23 @@ class cart
             return false;
         }
 	}
+
+	function addJumlahItem($cartid) {
+		$sql = "UPDATE tblCart SET jumlah = jumlah+1 WHERE idcart = '$cartid'";
+		return mysql_query($sql) ? true : false;
+
+	}
+
+	function substractJumlahItem($cartid) {
+		$sq = "SELECT jumlah FROM tblCart WHERE idcart = '$cartid";
+		$row = mysql_fetch_array(mysql_query($sq));
+		if($row['jumlah'] == 1) {
+			$sql = "DELETE FROM tblCart WHERE idcart = '$cartid'";
+		} else {
+			$sql = "UPDATE tblCart SET jumlah = jumlah-1 WHERE idcart = '$cartid'";
+		}
+		return mysql_query($sql) ? true : false;
+
+	}
 }
 ?>

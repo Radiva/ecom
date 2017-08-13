@@ -45,9 +45,9 @@ function tampilCart() {
 					prod+='<h1>'+value.namabarang.substr(0,18)+'..</h1>';
 					prod+='<h2>Rp. '+Number(value.harga).toLocaleString("id")+'</h2>';
 					prod+='<h3>'+value.deskripsi.substr(0,50)+'...</h3><h4>';
-					prod+='<a href="#" class="add-qty"><i class="ion-plus-round"></i></a>';
+					prod+='<a class="add-qty" onclick="addJumlahItem('+value.idcart+')"><i class="ion-plus-round"></i></a>';
 					prod+='<input type="text" value="'+value.jumlah+'" class="qty">';
-					prod+='<a href="#" class="substract-qty"><i class="ion-minus-round"></i></a></h4>';
+					prod+='<a class="substract-qty" onclick="substractJumlahItem('+value.idcart+')"><i class="ion-minus-round"></i></a></h4>';
 					prod+='<h5><a class="remove-cart-item" onclick="hapusItem('+value.idcart+')" href="#"><i class="ion-android-close"></i></a></h5></div>';
                     prod+='<div class="clear"></div>';
                    prod+='<div class="decoration"></div>';
@@ -137,6 +137,48 @@ function deleteFromCart($cartid) {
         $.ajax({
            type: "POST",
             url:base_url('client/cart.php?fnc=3'),
+            data: "cartid="+$cartid,
+            dataType: "json",
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                if (res) {
+                    tampilCart();
+                }
+            },
+            error: function(res){
+               console.log(res+' error');
+            }
+            
+        });
+}
+
+function addJumlahItem($cartid) {
+        $.ajax({
+           type: "POST",
+            url:base_url('client/cart.php?fnc=5'),
+            data: "cartid="+$cartid,
+            dataType: "json",
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                if (res) {
+                    tampilCart();
+                }
+            },
+            error: function(res){
+               console.log(res+' error');
+            }
+            
+        });
+}
+
+function substractJumlahItem($cartid) {
+        $.ajax({
+           type: "POST",
+            url:base_url('client/cart.php?fnc=6'),
             data: "cartid="+$cartid,
             dataType: "json",
             cache: false,

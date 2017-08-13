@@ -36,6 +36,19 @@ switch ($fnc) {
 		echo json_encode($data);
 		break;
 
+	case 5:
+		$cartid = $_POST['cartid'];
+		$data = $cart->addJumlahItem($cartid);
+		echo json_encode($data);
+		break;
+
+	case 6:
+		$cartid = $_POST['cartid'];
+		$data = $cart->substractJumlahItem($cartid);
+		echo json_encode($data);
+		break;
+
+
 	default:
 		# code...
 		break;
