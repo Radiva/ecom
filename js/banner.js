@@ -12,9 +12,8 @@ function tampilbanner(){
                 prod+='';
                 $.each(res, function(key,value){
                   prod+='<a href="#" class="swiper-slide store-slider-item">';
-                  //prod+='<em class="bg-red-dark">'+value.judul+'</em>';
                   prod+='<img class="responsive-image" src="'+base_url(value.gambar)+'" alt="img">';
-                  prod+='<h3>'+value.content+'</h3></a>';
+                  prod+='<h3>'+value.judul+'</h3></a>';
                 });
                 $('.bannershow').prepend(prod);
 

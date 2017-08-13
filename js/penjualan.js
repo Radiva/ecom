@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
-    $data = getSession();
-    generatenota($data['username']);
-    invoice($data['username']);
+    var data = getSession();
+    generatenota(data['username']);
+    invoice(data['username']);
 });
 
 function generatenota(username){
@@ -16,7 +16,7 @@ function generatenota(username){
             console.log(res);
          },
         error: function(res){
-           console.log("gagal");
+           console.log(res);
         }
     });
 }
@@ -38,7 +38,13 @@ function invoice(username){
 
             $.each(res, function(key,value){
                 invoice+='<div class="toggle store-history-toggle">';
+                if(value.statuspenjualan == 'Pending'){
+                    invoice+='<a href="#" class="toggle-title"><strong class="bg-red-light">'+value.notapemesanan+'</strong>'+value.waktupembelian+'<i class="ion-android-add"></i></a>';
+                }
+                else{
                     invoice+='<a href="#" class="toggle-title"><strong class="bg-green-dark">'+value.notapemesanan+'</strong>'+value.waktupembelian+'<i class="ion-android-add"></i></a>';
+                }
+                    
                     invoice+='<div class="toggle-content">';
                         $.each(value.detailpenjualan, function(key,detail){
                         invoice+='<div class="store-history-item">';
@@ -68,7 +74,7 @@ function invoice(username){
             $('.invoice-content').append(invoice);
         },
         error: function(res){
-           console.log("gagal");
+           console.log(res);
         }
         
     });

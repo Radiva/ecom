@@ -1,9 +1,107 @@
 function setIdKategori(idkategori){
     window.localStorage.setItem("idkategori", idkategori);
 }
-function setIdBarang(idbarang,harga){
+function setIdBarang(idbarang,harga,idkategori){
     window.localStorage.setItem("idbarang", idbarang);
     window.localStorage.setItem("harga", harga);
+    window.localStorage.setItem("kategori", idkategori);
+}
+
+function setIdBrand(id) {
+   window.localStorage.setItem('idbrand', id);
+}
+
+function setTitle(title) {
+   window.localStorage.setItem('title', title);
+}
+
+function getTitle(title){
+    var code = 0;
+    switch(title){
+      case 'brand':
+            code = 8;
+      break;
+      case 'popular':
+            code = 6;
+      break;
+      case 'kategori':
+            code = 3;
+      break;
+    };
+    var judul = '';
+    alert(code);
+    // $.ajax({
+    //    type: "POST",
+    //     url:base_url('client/product.php?option=8'),
+    //     dataType: "json",
+    //     cache: false,
+    //     crossDomain: true,
+    //     success: function(res){
+    //         console.log(res);
+    //     },
+    //     error: function(res){
+    //        console.log("gagal");
+    //     }
+
+    // });
+}
+
+function tampilbrand(){
+     $.ajax({
+           type: "POST",
+            url:base_url('client/product.php?option=8'),
+            dataType: "json",
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                var i=0;
+                console.log(res);
+                var prod = '';
+                prod+='';
+                $.each(res, function(key,value){
+                  prod+='<a class="swiper-slide" href="product2.html" onclick="setIdBrand('+value.idbrand+')">';
+                  prod+='<u>'+value.namabrand+'</u>';
+                  prod+='<img class="responsive-image" src='+base_url(value.logobrand)+' alt="img">';
+                  prod+='<em class="overlay bg-red-dark"></em></a>';
+                });
+                $('.tampilkan').append(prod);
+
+
+            },
+            error: function(res){
+               console.log("gagal");
+            }
+
+        });
+}
+
+function tampilproductbybrand(){
+    var id = window.localStorage.getItem('idbrand');
+     $.ajax({
+           type: "POST",
+            url:base_url('client/product.php?option=9'),
+            data: "idbrand="+id,
+            dataType: "json",
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                var prod = '';
+                $.each(res, function(key,value){
+                    prod+='<div class="store-item">';
+                        prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+','+value.idkategori+')"><img src="images/pictures/1.jpg" alt="img"></a>';
+                        prod+='<a href="#" class="scale-hover store-item-button-1"><i class="ion-ios-cart"></i></a>';
+                        prod+='<strong>'+value.namabarang+'</strong>';
+                        prod+='<em>Rp. '+Number(value.harga).toLocaleString("id")+'</em>';
+                    prod+='</div>';
+                });
+                $('.store-items').prepend(prod);
+            },
+            error: function(res){
+               console.log(res);
+            }
+
+        });
 }
 
 function kategoriproduct(){
@@ -22,7 +120,7 @@ function kategoriproduct(){
             $.each(res, function(key,value){
                 i++;
                 if(w>warna.length)w=0;
-                kategori+='<a class="swiper-slide" href="product.html" onclick="setIdKategori('+value.idkategori+')">';
+                kategori+='<a class="swiper-slide" href="product2.html" onclick="setIdKategori('+value.idkategori+')">';
                 kategori+='<u>'+value.namakategori+'</u>';
                 kategori+='<img class="responsive-image" src="images/pictures/'+i+'t.jpg" alt="img">';
                 kategori+='<em class="overlay '+warna[w]+'"></em>';
@@ -49,16 +147,16 @@ function displayproductbykategori(){
         crossDomain: true,
         success: function(res){
             console.log(res);
-            var item = '';
-            $.each(res, function(key,value){
-                item+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+')">';
-                    item+='<img src="images/pictures/1t.jpg" alt="img">';
-                    item+='<strong>'+value.namabarang+'</strong>';
-                    item+='<em>'+value.deskripsi.substr(1,50)+'..</em>';
-                    item+='<u>Rp. '+Number(value.harga).toLocaleString("id")+'</u>';
-                item+='</a>';
-            });
-            $('.store-item-list').prepend(item);
+                var prod = '';
+                $.each(res, function(key,value){
+                    prod+='<div class="store-item">';
+                        prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+','+value.idkategori+')"><img src="images/pictures/1.jpg" alt="img"></a>';
+                        prod+='<a href="#" class="scale-hover store-item-button-1"><i class="ion-ios-cart"></i></a>';
+                        prod+='<strong>'+value.namabarang+'</strong>';
+                        prod+='<em>Rp. '+Number(value.harga).toLocaleString("id")+'</em>';
+                    prod+='</div>';
+                });
+                $('.store-items').prepend(prod);
         },
         error: function(res){
            console.log(res);
@@ -67,7 +165,14 @@ function displayproductbykategori(){
     });
     
 }
-function displaydetailproduct(idbarang){
+
+function displaysimilarkategori(){
+
+}
+
+function displaydetailproduct(){
+console.log(window.localStorage.getItem('idbarang'));
+var idbarang = window.localStorage.getItem('idbarang');
     $.ajax({
        type: "POST",
         url:base_url('client/product.php?option=5'),
@@ -104,36 +209,39 @@ function displaydetailproduct(idbarang){
                         //detail+='<div class="cart-item-1"><a href="#" class="add-qty"><i class="ion-plus-round"></i></a><input type="text" value="1" class="qty"><a href="#" class="substract-qty"><i class="ion-minus-round"></i></div>';
                     detail+='</div>';
                     detail+='<div class="one-half last-column">';
-                        //detail+='<div class="cart-item-1 cart-item"><a href="#" class="add-qty"><i class="ion-plus-round"></i></a><input type="text" value="1" class="qty"><a href="#" class="substract-qty"><i class="ion-minus-round"></i></div>';
-                        //detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=cekPelanggan()><i class="ion-social-usd"></i>Purchase</div>';
+                        detail+='<div class="button button-icon button-blue button-round button-full button-xs no-bottom" onclick=cekPelanggan()><i class="ion-ios-cart"></i>Add to cart</div>';
                     detail+='</div>';
                     detail+='<div class="clear"></div>';
-                    detail+='<div class="decoration half-bottom full-top"></div>';
-                    detail+='<div class="store-product-rating half-top">';
-                        detail+='<h1>3.5</h1>';
-                        detail+='<div>';
-                            detail+='<em><i class="ion-ios-star"></i></em>';
-                            detail+='<em><i class="ion-ios-star"></i></em>';
-                            detail+='<em><i class="ion-ios-star"></i></em>';
-                            detail+='<em><i class="ion-android-star-half"></i></em>';
-                            detail+='<em><i class="ion-android-star-outline"></i></em>';
-                        detail+='</div>';
-                        detail+='<strong>181 Reviews</strong>';
-                    detail+='</div>';
-                    detail+='<div class="store-product-icons">';
-                        detail+='<strong><i class="ion-card"></i></strong>';
-                        detail+='<strong><i class="ion-cash"></i></strong>';
-                        detail+='<strong><i class="ion-android-car"></i></strong>';
-                    detail+='</div>';
+                    
                     detail+='<div class="decoration half-top"></div>';
                     detail+='<div class="store-product-description">';
                         detail+='<p>'+value.deskripsi+'</p>';
                     detail+='</div>';
+                    detail+='<div class="decoration"></div>';
+                    detail+='<div class="store-product-separator">';
+                        detail+='<h5>Reviews</h5>';
+                        detail+='<a href="#">See All</a>';
+                    detail+='</div>';
+                    detail+='<div class="commentarea">';
+                    detail+='</div>'
             });
-            $('#page-content-scroll').prepend(detail);
+             var login = localStorage.getItem('username');
+               if(login != null){
+                  detail+='<form id="contactForm reviewForm">';
+                      detail+='<div class="formTextareaWrap">';
+                      detail+='<textarea name="comment" class="contactTextarea requiredField" placeholder="Comment" id="contactMessageTextarea"></textarea>';
+                      detail+='</div>';
+                      detail+='<div class="formSubmitButtonErrorsWrap contactFormButton">';
+                      detail+='<input type="submit" class="buttonWrap button button-green contactSubmitButton" id="contactSubmitButton" value="Send Message" data-formId="contactForm"/>';
+                      detail+='</div>';
+                  detail+='</form>';
+              }
+              $('#page-content-scroll').append(detail);
+              tampilreview();
+              insertreview();
         },
         error: function(res){
-           console.log("gagal");
+           console.log(res);
         }
         
     });
@@ -150,7 +258,7 @@ function displaypopularproduct(){
             console.log(res);
             var popular = '';
             $.each(res, function(key,value){
-                popular+='<a class="swiper-slide" href="detailproduct.html" onclick="setIdBarang('+value.idbarang+')">';
+                popular+='<a class="swiper-slide" href="detailproduct.html" onclick="setIdBarang('+value.idbarang+','+value.harga+','+value.idkategori+')">';
                     popular+='<img class="responsive-image" src="images/pictures/4t.jpg" alt="img">';
                     popular+='<em>'+value.namabarang+'</em>';
                     popular+='<strong>Rp. '+Number(value.harga).toLocaleString("id")+'</strong>';
@@ -166,4 +274,93 @@ function displaypopularproduct(){
         
     });
     
+}
+
+function insertreview(){
+
+  $('input[type="submit"]').click(function() {
+      var id = window.localStorage.getItem('idbarang');
+      var username = window.localStorage.getItem('username');
+      var comment = $('textarea[name="comment"]').val();
+
+      var Data = {
+          idbarang:id,
+          username:username,
+          comment:comment
+      };
+
+      if(comment!=null||comment!=''){
+        $.ajax({
+           type: "POST",
+            url:base_url('client/product.php?option=0'),
+            dataType: "json",
+            data:Data,
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                if(res){
+                    $('textarea[name="comment"]').val(null);
+                    tampilreview();
+                }
+            },
+            error: function(res){
+               console.log(res);
+            }
+
+        });
+      }
+  });
+   
+}
+
+function tampilreview(){
+   var id = window.localStorage.getItem('idbarang');
+     $.ajax({
+           type: "POST",
+            url:base_url('client/product.php?option=1'),
+            dataType: "json",
+            data:'idbarang='+id,
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                var i = 0;
+                var review = '';
+                if(res!=false){
+                $('.commentarea').text(null);
+                  $.each(res, function(key,value){
+                        if(i<3){
+                            review+='<div class="store-review-item">';
+                                review+='<img class="preload-image" alt="img" src="images/pictures/1t.jpg">';
+                                review+='<h1><b>'+value.username+'</b></h1>';
+                                review+='<em>';
+                                    review+=value.tanggalcomment;
+                                review+='</em>';
+                                review+='<p>';
+                                    review+=value.comment;
+                                review+='</p>';
+                            review+='</div>';
+                        }
+                        i++;
+                    });
+                     if(i>=4){
+                            review+='<div class="store-review-item">';
+                            review+='<p>... '+i+' Reviews List</p>';
+                            review+='</div>';
+                     }
+                  
+                }
+                else{
+                    review+='<p>Tidak ada review</p>';
+                }
+                    
+                 $('.commentarea').append(review);
+                              
+            },
+            error: function(res){
+               console.log(res);
+            }
+
+        });
 }

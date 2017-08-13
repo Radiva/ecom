@@ -1,3 +1,30 @@
+function cartList(){
+     var id3 = window.localStorage.getItem("username");
+    $.ajax({
+           type: "POST",
+            url:base_url('client/cart.php?fnc=1'),
+            data: "user="+id3,
+            dataType: "json",
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                $('.list-cart').text(null);
+                var cartlist = '';
+                $.each(res, function(key,value){
+                    
+                    cartlist+='<em class="menu-divider"><em>'+value.namabarang+' ('+value.jumlah+')</em></em>';
+                });
+                cartlist+='<a href="store-cart.html"><span><i class="icon-bg bg-red-dark ion-ios-cart"></i>See Your Cart</span></a>';
+                $('.list-cart').append(cartlist);
+             },
+            error: function(res){
+               console.log(res);
+            }
+
+        });
+}
+
 
 function tampilCart() {
     var id3 = window.localStorage.getItem("username");
@@ -9,23 +36,32 @@ function tampilCart() {
             cache: false,
             crossDomain: true,
             success: function(res){
+                console.log(res);
+                $('.tampilkan').text(null);
                 var prod = '';
-                prod+='';
                 $.each(res, function(key,value){
                 	prod+='<div class="cart-item">';
-					prod+='<img data-original="'+base_url(value.gambar)+'" alt="img" class="preload-image" src="images/empty.png">';
-					prod+='<h1>'+value.namabarang+'</h1>';
+					prod+='<img data-original="'+value.gambar+'" alt="img" class="preload-image" src="images/empty.png">';
+					prod+='<h1>'+value.namabarang.substr(0,18)+'..</h1>';
 					prod+='<h2>Rp. '+Number(value.harga).toLocaleString("id")+'</h2>';
-					prod+='<h3>'+value.deskripsi.substr(1,75)+'...</h3><h4>';
+					prod+='<h3>'+value.deskripsi.substr(0,50)+'...</h3><h4>';
 					prod+='<a href="#" class="add-qty"><i class="ion-plus-round"></i></a>';
 					prod+='<input type="text" value="'+value.jumlah+'" class="qty">';
 					prod+='<a href="#" class="substract-qty"><i class="ion-minus-round"></i></a></h4>';
 					prod+='<h5><a class="remove-cart-item" onclick="hapusItem('+value.idcart+')" href="#"><i class="ion-android-close"></i></a></h5></div>';
+                    prod+='<div class="clear"></div>';
+                   prod+='<div class="decoration"></div>';
                 });
+                prod+='<div class="cart-costs">';
+                prod+='</div>';
+                prod+='<div class="clear"></div>';
+                
                 $('.tampilkan').prepend(prod);
+                updatejumlah();
+                
             },
             error: function(res){
-               console.log(res+'error');
+               console.log(res);
             }
 
         });
@@ -41,16 +77,23 @@ function updatejumlah() {
             cache: false,
             crossDomain: true,
             success: function(res){
+                console.log(res);
                 var prod = '';
-                prod+='';
                 $.each(res, function(key,value){
-                    prod+='<h4>Estimated Costs</h4><h5><strong>Packaging</strong><em class="color-red-dark">$0.00</em></h5>';
-                    prod+='<h5><strong>Delivery</strong><em>$60.00</em></h5><h5><strong>Taxes</strong><em>$40.00</em></h5>';
-                    prod+='<h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5><h6><strong>Grand Total</strong><em>Rp. '+Number(value.hargatotal).toLocaleString("id")+'</em></h6>';
-                    prod+='<div class="clear"></div><a href="invoice.html" class="button button-green button-full half-top">Proceed to Checkout</a>';
-                    prod+='<a href="store-cart-2.html" class="button button-red button-full half-top">Check Version 2</a>';
-                 });
-                $('.cart-costs').prepend(prod);
+                    if(value.jumlahitem!=null){                        
+                        prod+='<h4>Estimated Costs</h4><h5><strong>Products</strong><em class="color-red-dark">$0.00</em></h5>';
+                        prod+='<h5><strong>Delivery</strong><em>$60.00</em></h5><h5><strong>Taxes</strong><em>$40.00</em></h5>';
+                        prod+='<h5><strong>Discount</strong><em class="color-green-dark">$10.00</em></h5><h6><strong>Grand Total</strong><em>Rp. '+Number(value.hargatotal).toLocaleString("id")+'</em></h6>';
+                        prod+='<div class="clear"></div><a href="invoice.html" class="button button-green button-full half-top">Proceed to Checkout</a>';
+                        prod+='<a href="store-cart-2.html" class="button button-red button-full half-top">Check History</a>';
+                        
+                    }
+                    else{
+                        prod+='<h4>Tidak ada item di cart list</h4>';
+                    }
+                });
+                        
+                $('.cart-costs').append(prod);
             },
             error: function(res){
                console.log("gagal2");
@@ -68,8 +111,8 @@ function cekPelanggan() {
 }
 
 function addToCart() {
-    var id1 = localStorage.getItem("idbarang");
-    var id2 = localStorage.getItem("harga");
+    var id1 = window.localStorage.getItem("idbarang");
+    var id2 = window.localStorage.getItem("harga");
     var id3 = window.localStorage.getItem("username");
         $.ajax({
            type: "POST",
@@ -80,6 +123,8 @@ function addToCart() {
             crossDomain: true,
             success: function(res){
                 console.log(res);
+                alert("success adding item to cart");
+                cartList();
             },
             error: function(res){
                console.log(res+' error');
@@ -98,6 +143,9 @@ function deleteFromCart($cartid) {
             crossDomain: true,
             success: function(res){
                 console.log(res);
+                if (res) {
+                    tampilCart();
+                }
             },
             error: function(res){
                console.log(res+' error');

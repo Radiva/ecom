@@ -52,16 +52,8 @@ function tampilproductbybrand(){
                     prod+='<em>'+value.deskripsi.substr(1,50)+'..</em>';
                     prod+='<u>Rp. '+Number(value.harga).toLocaleString("id")+'</u>';
                 prod+='</a>';
-                  // prod+='<div class="cart-item">';
-                  // prod+='<a href="detailproduct.html" onclick="setIdBarang('+value.idbarang+')"><img data-original='+base_url(value.gambar)+' alt="img" class="preload-image" src="images/empty.png">';
-                  // prod+='<h1>'+value.namabarang+'</h1>';
-                  // prod+='<h2>Rp.'+value.harga+'</h2>';
-                  // prod+='<h3>'+value.deskripsi+'</h3>';
-                  // prod+='</a></div>';
                 });
-                //console.log(prod);
                 $('.store-item-list').prepend(prod);
-                // alert("aaaa");
             },
             error: function(res){
                console.log("gagal");

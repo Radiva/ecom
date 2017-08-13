@@ -1,66 +1,91 @@
-function setIdProduct(id) {
-  window.localStorage.setItem('product', id);
-}
+function insertreview(){
 
-function tampilreview(){
-   var id = window.localStorage.getItem('product');
-     $.ajax({
+  $('#reviewForm').submit(function(event) {
+      event.preventDefault();
+      var id = window.localStorage.getItem('idbarang');
+      var username = window.localStorage.getItem('username');
+      var comment = $('input[name="comment"]').val();
+
+      var Data = {
+          idbarang:id,
+          username:username,
+          comment:comment
+      };
+
+       $.ajax({
            type: "POST",
-            url:base_url('client/product.php?fnc=3&id='+id),
+            url:base_url('client/product.php?option=0'),
             dataType: "json",
+            data:Data,
             cache: false,
             crossDomain: true,
             success: function(res){
-                var i=0;
                 console.log(res);
-                var prod = '';
-                prod+='';
-                $.each(res, function(key,value){
-                  prod+='<div class="store-review-item">';
-                  prod+='<img class="preload-image" data-original="images/pictures/1t.jpg" alt="img" src="images/empty.png">';
-                  prod+='<h1>usernameone</h1><em><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i></em>';
-                  prod+='<u>08 August 2024</u><strong>Excellent</strong><p>The usefulness of Enabled templates is unmatched. I personally find the value to be many,</p>';
-                  prod+='</div><div class="decoration"></div>';
-                });
-                $('.tampilkan').append(prod);
-
-
             },
             error: function(res){
-               console.log("gagal");
+               console.log(res);
+            }
+
+        });
+  });
+   
+}
+
+function tampilreview(){
+   var id = window.localStorage.getItem('idbarang');
+     $.ajax({
+           type: "POST",
+            url:base_url('client/product.php?option=1'),
+            dataType: "json",
+            data:'idbarang='+id
+            cache: false,
+            crossDomain: true,
+            success: function(res){
+                console.log(res);
+                var review = '';
+                if(res!=false){
+                  $.each(res, function(key,value){
+                    review+='<div class="store-review-item">';
+                            review+='<img class="preload-image" data-original="images/pictures/1t.jpg" alt="img" src="images/empty.png">';
+                            review+='<h1>usernameone</h1>';
+                            review+='<em>';
+                                review+='<i class="ion-ios-star"></i>';
+                                review+='<i class="ion-ios-star"></i>';
+                                review+='<i class="ion-ios-star"></i>';
+                                review+='<i class="ion-ios-star"></i>';
+                                review+='<i class="ion-ios-star"></i>';
+                            review+='</em>';
+                            review+='<u>08 August 2024</u>';
+                            review+='<strong>Excellent</strong>';
+                            review+='<p>';
+                                review+='The usefulness of Enabled templates is unmatched. I personally find the value to be many, many times the purchase price. There is no question this is one of the top tier development houses on CodeCanyon.';
+                            review+='</p>';
+                        review+='</div>';
+                    });
+                }
+                else{
+                    review+='<p>Tidak ada riview</p>';
+                }
+                $('#page-content-scroll').append(review);
+                              
+            },
+            error: function(res){
+               console.log(res);
             }
 
         });
 }
 
-// function tampilproductbybrand(){
-//     var id = window.localStorage.getItem('brand');
-//      $.ajax({
-//            type: "POST",
-//             url:base_url('client/product.php?fnc=2&id='+id),
-//             dataType: "json",
-//             cache: false,
-//             crossDomain: true,
-//             success: function(res){
-//                 var i=0;
-//                 console.log(res);
-//                 var prod = '';
-//                 prod+='';
-//                 $.each(res, function(key,value){
-//                   prod+='<div class="cart-item">';
-//                   prod+='<img data-original='+base_url(value.gambar)+' alt="img" class="preload-image" src="images/empty.png">';
-//                   prod+='<h1>'+value.namabarang+'</h1>';
-//                   prod+='<h2>Rp.'+value.harga+'</h2>';
-//                   prod+='<h3>'+value.deskripsi+'</h3>';
-//                   prod+='</div>';
-//                 });
-//                 //console.log(prod);
-//                 $('#lalala').prepend(prod);
-//                 // alert("aaaa");
-//             },
-//             error: function(res){
-//                console.log("gagal");
-//             }
-
-//         });
-// }
+function reviewform(){
+  var review = '';
+      review+='<form id="contactForm reviewForm">';
+          review+='<div class="formTextareaWrap">';
+          review+='<textarea name="comment" class="contactTextarea requiredField" placeholder="Comment" id="contactMessageTextarea"></textarea>';
+          review+='</div>';
+          review+='<div class="formSubmitButtonErrorsWrap contactFormButton">';
+          review+='<input type="submit" class="buttonWrap button button-green contactSubmitButton" id="contactSubmitButton" value="Send Message" data-formId="contactForm"/>';
+          review+='</div>';
+      review+='</form>';
+      $('#page-content-scroll').append(review);
+                              
+}

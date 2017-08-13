@@ -16,7 +16,7 @@ switch($option){
 		date_default_timezone_set("Asia/Bangkok");
 		$notapemesanan = strtoupper($namamerchant[0].''.$namamerchant[''.round(strlen($namamerchant)/2)].''.$namamerchant[strlen($namamerchant)-1]).''.date('Ymd', time()).''.sprintf('%04u', $jumlahdata+1);
 		$username = $_POST['username'];
-		$statuspenjualan = "Success";
+		$statuspenjualan = "Pending";
 		// $idkategoripembayaran = $_POST['idkategoripembayaran'];
 		$idkategoripembayaran = 1;
 		// $diskon = $_POST['diskon'];
@@ -29,18 +29,21 @@ switch($option){
 			'diskon'=>$diskon
 		);
 		if(mysql_num_rows(mysql_query("select*from tblcart where idsession='$username'"))>0){
-			$insertpenjualan = $penjualan->insertpenjualan($data);
+			$cek = $penjualan->cekpenjualanpending($username);
+			if($cek == false){
+				$insertpenjualan = $penjualan->insertpenjualan($data);
 				if($insertpenjualan){
-					$charttodetail = $penjualan->charttodetail($username);
-					if($charttodetail){
-						echo json_encode($notapemesanan);
-					}
-					else{
-						echo json_encode(2);
-					}
+					$charttodetail = $penjualan->charttodetail($username, $notapemesanan);
+					echo json_encode($charttodetail);
 				}else{
 					echo json_encode(false);
 				}
+			}
+			else{
+				$charttodetail = $penjualan->charttodetail($username, $cek);
+				echo json_encode($charttodetail);
+				
+			}
 		}
 		else{
 			echo json_encode(false);

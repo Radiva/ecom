@@ -21,22 +21,33 @@
                     <em class="menu-divider"></em>
                     <a href="index.html"><i class="icon-bg bg-blue-dark ion-ios-cart"></i><span>Home</span></a>
                     <a href="store-cart.html"><i class="icon-bg bg-blue-dark ion-ios-cart"></i><span>Cart</span></a>
+                    <a href="invoice.html"><i class="icon-bg bg-blue-dark ion-ios-cart"></i><span>History</span></a>
                     <a href="page-videos.html"><i class="icon-bg bg-pink-dark ion-ios-film-outline"></i><span>Video</span></a>
                     <a href="store-checkout.html"><i class="icon-bg bg-blue-dark ion-ios-cart"></i><span>Checkout</span></a>
                     <a href="page-contact.html"><i class="icon-bg bg-green-dark ion-ios-chatboxes-outline"></i><span>Contact</span><i class="ion-record"></i></a>
-                    <em class="menu-divider menu-kategori">Kategori</em>
 
                     <div id="cek"></div>
-
-                    <a href="#" class="close-sidebar"><i class="icon-bg bg-red-light ion-android-close"></i><span>Close</span><i class="ion-record"></i></a>
                     <em class="menu-divider">Copyright <u class="copyright-year"></u>. All rights reserved</em>
                 </div>
             </div>
+            <div class="sidebar sidebar-right">
+                <div class="sidebar-header sidebar-header-classic">
+                    <a href="index.html" class="sidebar-logo">
+                    <strong>The Ultimate Mobile Solution</strong>
+                    </a>
+                </div>
+                <div class="menu-options icon-background sidebar-menu cartList-menu">
+                    <em class="menu-divider">Chart List</em>
+                    <div class="list-cart"></div>
+                </div>
+            </div>
+            
 
             <script type="text/javascript">
                 if (getSession()==false) {
                     document.getElementById("cek").innerHTML = '<a href="login.html" class="login-menu"><i class="icon-bg bg-green-light ion-log-in"></i><span>Login</span><i class="ion-record"></i></a>';
                 } else {
                     document.getElementById("cek").innerHTML = '<a onclick="logout()"><i class="icon-bg bg-green-light ion-log-in"></i><span>Logout</span><i class="ion-record"></i></a>';
+
                 }
             </script>>

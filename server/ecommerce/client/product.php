@@ -8,8 +8,27 @@ $product = new product;
 $option = $_GET['option'];
 
 switch($option){
-    // display all product
+    // Insert review product
+    case 0:
+	$comment = $_POST['comment'];
+	$username = $_POST['username'];
+	$idbarang = $_POST['idbarang'];
+	$data = array(
+		'Idbarang'=>$idbarang,
+		'Username'=>$username,
+		'Comment'=>$comment
+	);
+	$insertreview = $product->insertreviewproduct($data);
+	echo json_encode($insertreview);
+    break;
+    // display riview product
     case 1:
+	$idbarang = $_POST['idbarang'];
+	$displayreviewproduct = $product->tampilreviewproduct($idbarang);
+	echo json_encode($displayreviewproduct);
+    break;
+    // display all product
+    case 2:
 	$displayallproduct = $product->displayallproduct();
 	echo json_encode($displayallproduct);
     break;
@@ -57,7 +76,7 @@ switch($option){
         break;
 
     case 10:
-        $id = $_POST['id'];
+        $id = $_GET['id'];
         $data = $product->tampilreviewproduct($id);
         echo json_encode($data);
         break;

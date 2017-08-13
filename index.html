@@ -20,6 +20,7 @@
     <script type="text/javascript" src="js/brand.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
     <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/cart.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/banner.js"></script>
 </head>
@@ -28,19 +29,6 @@
     <div id="page-transitions"></div>
         <div class="sidebars sidebars-light">    
            
-            <div class="sidebar sidebar-right">
-                <div class="sidebar-header sidebar-header-classic">
-                    <a href="index.html" class="sidebar-logo">
-                    <strong>The Ultimate Mobile Solution</strong>
-                    </a>
-                </div>
-                <div class="menu-options icon-background sidebar-menu">
-                    <em class="menu-divider">Chart List</em>
-                    <a class="default-link" href="https://www.facebook.com/enabled.labs/"><i class="icon-bg facebook-bg ion-social-facebook"></i><span>Facebook</span><i class="ion-record"></i></a>
-                    <a class="default-link" href="https://twitter.com/iEnabled"><i class="icon-bg twitter-bg ion-social-twitter"></i><span>Twitter</span><i class="ion-record"></i></a>
-                    <a class="default-link" href="https://plus.google.com/u/1/105775801838187143320"><i class="icon-bg google-bg ion-social-googleplus"></i><span>Google +</span><i class="ion-record"></i></a>
-                </div>
-            </div>
         </div>
 
         <div class="header header-logo-center header-dark">
@@ -52,27 +40,12 @@
             <div id="page-content-scroll">
                 <div class="store-slider no-bottom">
                     <div class="swiper-wrapper bannershow">
-                       <!--  <a href="#" class="swiper-slide store-slider-item">
-                            <em class="bg-red-dark">$19<u>99</u></em>
-                            <img class="responsive-image" src="images/pictures/1.jpg" alt="img">
-                            <h3>Buy one get one free!</h3>
-                        </a>
-                        <a href="#" class="swiper-slide store-slider-item">
-                            <em class="bg-green-dark">$29<u>99</u></em>
-                            <img class="responsive-image" src="images/pictures/2.jpg" alt="img">
-                            <h3>Last minute offer!</h3>
-                        </a>
-                        <a href="#" class="swiper-slide store-slider-item">
-                            <em class="bg-blue-dark">$99<u>99</u></em>
-                            <img class="responsive-image" src="images/pictures/3.jpg" alt="img">
-                            <h3>Best Selling Item</h3>
-                        </a> -->
                     </div>
                 </div>
 
-                <p class="category-title">
+                <p class="category-title popular-title">
                     Popular Product
-                    <a href="#">See All</a>
+                    <a href="product2.html" onclick="setTitle('popular')">See All</a>
                 </p>
                 <div class="clear"></div>
                 <div class="category-slider">
@@ -81,9 +54,9 @@
                     </div>
                 </div>
 
-                 <p class="category-title">
+                 <p class="category-title brand-title">
                     Browse by Brand
-                    <a href="#">See All</a>
+                    <a href="product2.html" onclick="setTitle('brand')">See All</a>
                 </p>
                 <div class="clear"></div>
                 <div class="store-thumbnails">
@@ -91,9 +64,9 @@
                     </div>
                 </div>
 
-                <p class="category-title">
+                <p class="category-title kategori-title">
                     Browse by Category
-                    <a href="#">See All</a>
+                    <a href="product2.html" onclick="setTitle('kategori')">See All</a>
                 </p>
                 <div class="clear"></div>
                 <div class="store-thumbnails">
@@ -186,6 +159,9 @@
         $(document).ready(function() {
             window.localStorage.removeItem("idbrand");
             window.localStorage.removeItem("idkategori");
+            window.localStorage.removeItem("title");
+            window.localStorage.removeItem("idbarang");
+            window.localStorage.removeItem("harga");
             menu();
             kategoriproduct();
             displaypopularproduct();
